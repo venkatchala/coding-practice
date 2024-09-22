@@ -52,6 +52,10 @@ const Head = () => {
       <li className="m-4 p-2 border bg-gray-400">
         <Link to="/counterRedux">CounterByRedux</Link>
       </li>
+       <li className="m-4 p-2 border bg-gray-400">
+        <Link to="/hocDashboard">HocDashboard</Link>
+      </li>
+      
     </ul>
   );
 }

@@ -51,15 +51,15 @@ console.log(fibonacci(10))
 // Return the given value present in array if not return previous value present in array
 
 const array = [1, 3, 5, 9, 12, 16, 19, 21, 23];
-let prevValue = 0,
-  x = 17;
-array.forEach((num) => {
-  if (num === x) {
-    console.log(num);
-  } else if (num < x) {
-    prevValue = num;
+let x = 8,
+  prevValue = null;
+for (let i = 0; i < array.length; i += 1) {
+  if (array[i] < x) {
+    prevValue = array[i];
+  } else if (array[i] === x) {
+     console.log(array[i]);
   }
-});
+}
 console.log(prevValue);
 
 // Find repeated String
@@ -89,7 +89,7 @@ function findMaxMin(arr) {
   arr.forEach((num) => {
     if (num > max) {
       max = num;
-    } else if (num < min) {
+    } else {
       min = num;
     }
   });
@@ -154,5 +154,36 @@ function multiplyBy(multiplier, ...numbersList) {
 }
 
 console.log(multiplyBy(2,1,2,3));
+
+// PrimeNumber
+
+function isPrime(num) {
+  if (num <= 1) return false;
+  for (let i = 2; i <= Math.sqrt(num); i += 1) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+const arrayNumbers = [1,2,3,4,5,7,9,12];
+const primeNumbers = arrayNumbers.filter(isPrime);
+console.log(primeNumbers);
+
+
+// Sort an array without using sort method
+const arraySort = [35, 4, 76, 1, 8787, 45];
+
+for (let i = 0; i < array.length - 1; i += 1) {
+  for (let j = 0; j < array.length - 1; j += 1) {
+    if (arraySort[j] > arraySort[j + 1]) {
+      let temp = arraySort[j];
+      arraySort[j] = arraySort[j + 1];
+      arraySort[j + 1] = temp;
+  }
+  }
+}
+
 
 // https://onecompiler.com/javascript/42qygaerg
