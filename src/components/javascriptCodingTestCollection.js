@@ -201,5 +201,20 @@ function findDuplicates(arr) {
 
 console.log(findDuplicates([1,2,3,4,2,5,1]));
 
+// Find Number of occurence in word
+
+function findOccurence(str) {
+  let letters = str.toLowerCase().split(''),
+  count = {};
+  letters.forEach(letter =>{
+    if (count[letter]) {
+      count[letter]++;
+    } else {
+      count[letter] = 1;
+    }
+  }) 
+}
+console.log(findOccurence("Elephant"))
+
 
 // https://onecompiler.com/javascript/42qygaerg
