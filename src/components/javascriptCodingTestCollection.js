@@ -185,5 +185,21 @@ for (let i = 0; i < array.length - 1; i += 1) {
   }
 }
 
+function findDuplicates(arr) {
+  let duplicates = [],
+  withoutDuplicates = [];
+  
+  arr.forEach(num => {
+    if (withoutDuplicates(num)) {
+      duplicates.push(num);
+    } else {
+      withoutDuplicates.push(num);
+    }
+  })
+  return {duplicates, withoutDuplicates};
+}
+
+console.log(findDuplicates([1,2,3,4,2,5,1]));
+
 
 // https://onecompiler.com/javascript/42qygaerg
