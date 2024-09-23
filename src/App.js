@@ -18,6 +18,7 @@ import StopWatch from "./components/StopWatch";
 import DigitalClock from "./components/DigitalClock";
 import CounterRedux from "./components/CounterRedux";
 import HocDashboard from "./components/HocDashboard";
+import Crud from "./components/Crud";
 
 const appRouter = createBrowserRouter([
   {
@@ -95,6 +96,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/hocDashboard",
         element: <HocDashboard />,
+      },
+      {
+        path: "/crud",
+        element: <Crud />,
       },
     ],
   },
