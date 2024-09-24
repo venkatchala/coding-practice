@@ -1,4 +1,4 @@
-// Sort EvenNumbers
+//1. Sort EvenNumbers
 
 function sortEvenNumbers(arr) {
   const evenNumbers = arr.filter((num) => num % 2 === 0).sort((a, b) => b - a);
@@ -9,7 +9,7 @@ function sortEvenNumbers(arr) {
 console.log(sortEvenNumbers([5, 3, 2, 8, 1, 4]));
 
 
-// Find UniqCharacters in String
+//2. Find UniqCharacters in String
 
 function hasUniqCharacters(str) {
   for (let i = 0; i < str.length; i++) {
@@ -25,7 +25,7 @@ function hasUniqCharacters(str) {
 console.log(hasUniqCharacters("abcdef"));
 console.log(hasUniqCharacters("hello"));
 
-// flattenArray
+//3. flattenArray
 
 function flattenArray(arr) {
     return arr.reduce((flat, toFlatten) => {
@@ -36,7 +36,7 @@ function flattenArray(arr) {
 console.log(flattenArray([1,[2,[3,4],5],6]))
 
 
-// fibonacci
+//4. fibonacci
 
 function fibonacci(n) {
     let fib = [0,1];
@@ -48,7 +48,7 @@ function fibonacci(n) {
 
 console.log(fibonacci(10))
 
-// Return the given value present in array if not return previous value present in array
+//5. Return the given value present in array if not return previous value present in array
 
 const array = [1, 3, 5, 9, 12, 16, 19, 21, 23];
 let x = 8,
@@ -62,7 +62,7 @@ for (let i = 0; i < array.length; i += 1) {
 }
 console.log(prevValue);
 
-// Find repeated String
+//6. Find repeated String
 
 function countRepeatedString(str) {
   let words = str.toLowerCase().split(' '),
@@ -81,7 +81,7 @@ function countRepeatedString(str) {
 
 console.log(countRepeatedString("The sun rises in the morning"));
 
-// Find Maximum and minimum in array
+//7. Find Maximum and minimum in array
 
 function findMaxMin(arr) {
   let max = arr[0],
@@ -98,7 +98,7 @@ function findMaxMin(arr) {
 console.log(findMaxMin([3, 6, 2, 7, 12]));
 
 
-// setTimeOut Example
+//8. setTimeOut Example
 
 function displayName() {
   console.log(`Hai, Eniyan`);
@@ -110,7 +110,7 @@ function displayName() {
 
 displayName();
 
-//Spread operator
+//9. Spread operator
 
 //Example1
 
@@ -137,7 +137,7 @@ function sum(x,y,z) {
 const numbers = [1,2,3];
 console.log(sum(...numbers));
 
-//rest parameter
+//10. rest parameter
 
 //Example 1
 
@@ -155,7 +155,7 @@ function multiplyBy(multiplier, ...numbersList) {
 
 console.log(multiplyBy(2,1,2,3));
 
-// PrimeNumber
+//11. PrimeNumber
 
 function isPrime(num) {
   if (num <= 1) return false;
@@ -172,7 +172,7 @@ const primeNumbers = arrayNumbers.filter(isPrime);
 console.log(primeNumbers);
 
 
-// Sort an array without using sort method
+//12. Sort an array without using sort method
 const arraySort = [35, 4, 76, 1, 8787, 45];
 
 for (let i = 0; i < array.length - 1; i += 1) {
@@ -185,12 +185,14 @@ for (let i = 0; i < array.length - 1; i += 1) {
   }
 }
 
+// 13. Find Duplicates in the array
+
 function findDuplicates(arr) {
   let duplicates = [],
   withoutDuplicates = [];
   
   arr.forEach(num => {
-    if (withoutDuplicates(num)) {
+    if (withoutDuplicates[num]) {
       duplicates.push(num);
     } else {
       withoutDuplicates.push(num);
@@ -201,7 +203,7 @@ function findDuplicates(arr) {
 
 console.log(findDuplicates([1,2,3,4,2,5,1]));
 
-// Find Number of occurence in word
+//14. Find Number of occurence in word
 
 function findOccurence(str) {
   let letters = str.toLowerCase().split(''),
