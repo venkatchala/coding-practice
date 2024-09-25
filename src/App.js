@@ -19,6 +19,7 @@ import DigitalClock from "./components/DigitalClock";
 import CounterRedux from "./components/CounterRedux";
 import HocDashboard from "./components/HocDashboard";
 import Crud from "./components/Crud";
+import UserList from "./components/UserList";
 
 const appRouter = createBrowserRouter([
   {
@@ -100,6 +101,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/crud",
         element: <Crud />,
+      },
+      {
+        path: "/userlist",
+        element: <UserList />,
       },
     ],
   },

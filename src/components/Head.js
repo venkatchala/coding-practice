@@ -58,6 +58,9 @@ const Head = () => {
       <li className="m-4 p-2 border bg-gray-400">
         <Link to="/crud">CrudOperation</Link>
       </li>
+      <li className="m-4 p-2 border bg-gray-400">
+        <Link to="/userlist">UserList</Link>
+      </li>
     </ul>
   );
 }
