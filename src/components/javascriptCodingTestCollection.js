@@ -41,7 +41,7 @@ console.log(flattenArray([1,[2,[3,4],5],6]))
 function fibonacci(n) {
     let fib = [0,1];
     for(let i = 2; i <= n; i++ ) {
-        fib[i] = fib[n - 1] + fib[n - 2];
+        fib[i] = fib(n-1) + fib(n-2);
     }
     return fib;
 }
@@ -171,8 +171,23 @@ const arrayNumbers = [1,2,3,4,5,7,9,12];
 const primeNumbers = arrayNumbers.filter(isPrime);
 console.log(primeNumbers);
 
+// 12. Prime Number Between Numbers
 
-//12. Sort an array without using sort method
+let startNum = 40,
+endNum = 50;
+
+for (let num = startNum; num <= endNum; num += 1) {
+  let isPrime =true;
+  for (let i = 2; i < num; i += 1) {
+    if (num % i === 0) {
+      isPrime = false;
+    }
+  }
+  if (isPrime) console.log(num)
+}
+
+
+//13. Sort an array without using sort method
 const arraySort = [35, 4, 76, 1, 8787, 45];
 
 for (let i = 0; i < array.length - 1; i += 1) {
@@ -185,7 +200,9 @@ for (let i = 0; i < array.length - 1; i += 1) {
   }
 }
 
-// 13. Find Duplicates in the array
+console.log(arraySort);
+
+// 14. Find Duplicates in the array
 
 function findDuplicates(arr) {
   let duplicates = [],
@@ -203,7 +220,7 @@ function findDuplicates(arr) {
 
 console.log(findDuplicates([1,2,3,4,2,5,1]));
 
-//14. Find Number of occurence in word
+//15. Find Number of occurence in word
 
 function findOccurence(str) {
   let letters = str.toLowerCase().split(''),

@@ -8,7 +8,7 @@ const DigitalClock = () => {
             setTime(new Date());
         },1000);
         return () => clearInterval(intervalId)
-    })
+    },[time])
 
     const formatTime = (date) => {
         const hours = String(date.getHours()).padStart(2, '0');
