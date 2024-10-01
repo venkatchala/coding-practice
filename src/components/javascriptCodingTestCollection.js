@@ -221,6 +221,7 @@ function findDuplicates(arr) {
 console.log(findDuplicates([1,2,3,4,2,5,1]));
 
 //15. Find Number of occurence in word
+// Method 1
 
 function findOccurence(str) {
   let letters = str.toLowerCase().split(''),
@@ -234,6 +235,67 @@ function findOccurence(str) {
   }) 
 }
 console.log(findOccurence("Elephant"))
+
+//Method 2
+
+function charactersOccurence(str) {
+  let word = str.toLowerCase(),
+  count = {};
+
+  for (let char of word) {
+    count[char] ? count[char]++ : count[char] = 1;
+  }
+  return count;
+}
+console.log(charactersOccurence('Google'))
+
+
+
+//16. Reverse the string
+
+const originalString = 'Hello';
+
+const reversedString = reverseStirng(originalString);
+console.log(reversedString);
+
+function reverseStirng(str) {
+  let reversed = '';
+
+  for (let i = str.length - 1; i >=0; i--) {
+    reversed += str[i];
+  }
+  return reversed;
+
+}
+
+//17. Check if a string is Palindrome
+function isPalindrome(str) {
+  function reversedStr(s) {
+    let reversed = '';
+    for (let i = s.length - 1; i >= 0; i--) {
+      reversed += s[i];
+    }
+    return reversed;
+  }
+  const cleanedString = str.toLowerCase();
+  return reversedString === reversedStr(cleanedString);
+}
+console.log(isPalindrome('Level'))
+
+//Find Longest word in the string
+
+function findLongestWord(str) {
+  let words = str.split(' '),
+  longetsWord = '';
+
+  words.forEach(word => {
+    if (word.length > longetsWord.length) longetsWord = word;
+  })
+  return longetsWord;
+
+}
+
+console.log(findLongestWord("Hello find the longest word in the given string"))
 
 
 // https://onecompiler.com/javascript/42qygaerg
