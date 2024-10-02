@@ -204,6 +204,24 @@ console.log(arraySort);
 
 // 14. Find Duplicates in the array
 
+// Example 1
+
+function removeDuplicates(arr) {
+  return [...new Set(arr)]
+}
+
+console.log(removeDuplicates([1, 2, 3, 3, 4, 5, 5]))
+
+// Example 2
+
+function removeDuplicateNum(arr) {
+  return arr.filter((val, index, self) => self.indexOf(val) === index)
+}
+
+console.log(removeDuplicateNum([1, 2, 3, 4, 5, 5, 6, 6, 7, 7]))
+
+// Example 3
+
 function findDuplicates(arr) {
   let duplicates = [],
   withoutDuplicates = [];
@@ -282,7 +300,7 @@ function isPalindrome(str) {
 }
 console.log(isPalindrome('Level'))
 
-//Find Longest word in the string
+//18. Find Longest word in the string
 
 function findLongestWord(str) {
   let words = str.split(' '),
@@ -295,7 +313,9 @@ function findLongestWord(str) {
 
 }
 
-console.log(findLongestWord("Hello find the longest word in the given string"))
+console.log(findLongestWord("Hello find the longest word in the given string"));
+
+//19. 
 
 
 // https://onecompiler.com/javascript/42qygaerg
