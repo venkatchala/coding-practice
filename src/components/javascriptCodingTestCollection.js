@@ -315,7 +315,122 @@ function findLongestWord(str) {
 
 console.log(findLongestWord("Hello find the longest word in the given string"));
 
-//19. 
+//19. Find First Non repeating character of string
+
+function firstNonRepeatingCharacter(str) {
+  const count = {};
+
+  for (const char of str) {
+    count[char] ? count[char] += 1 : count[char] = 1;
+  }
+
+  for (const char of str) {
+    if (count[char] === 1) {
+      return char;
+    }
+  }
+return null;
+}
+
+console.log(firstNonRepeatingCharacter('swiss'));
+
+// 20. Anagrams
+
+function areAnagrams(str1, str2) {
+  str1 = str1.replace(/\s+/g,'').toLowerCase();
+  str2 = str2.replace(/\s+/g,'').toLowerCase();
+  let count1 = {},
+  count2 = {};
+
+  if (str1.length !== str2.length) {
+    return false
+  }
+  for (const char of str1) {
+    count1[char] ? count1[char] += 1 : count1[char] = 1;
+  }
+  for (const char of str2) {
+    count2[char] ? count2[char] += 1 : count2[char]; 
+  }
+
+  for (const char in count1) {
+    if (count1[char] !== count2[char]) {
+      return false
+    }
+  }
+  return true;
+}
+
+console.log(areAnagrams('listen', 'silent'))
+
+// 21. Find missing numbers in the array
+
+function findMissingNumber(arr) {
+  const n = arr.legth + 1;
+
+  const totalSum = (n * (n + 1)) / 2;
+
+  const arraySum = arr.reduce((acc, num) => acc + num ,0);
+
+  return totalSum - arraySum;
+}
+
+console.log(findMissingNumber([1,2,4,5]))
+
+// 22. Find intersections
+
+function intersection(arr1, arr2) {
+  const newArr1 = new Set(arr1);
+  const result = arr2.filter(item => newArr1.has(item));
+  return [...new Set(result)];
+}
+
+console.log(intersection([1,2,2,1], [2,2]))
+
+// 23. Rotate array
+
+function rotateArray(arr, k) {
+  k = k % arr.length;
+  reverse(arr, 0, arr.length - 1);
+  reverse(arr, 0, k-1);
+  reverse(arr, k, arr.length - 1);
+  return arr;
+}
+
+function reverse(arr, start, end) {
+  while (start < end) {
+    [arr[start], arr[end]] = [arr[end], arr[start]];
+    start++;
+    end--;
+  }
+}
+
+console.log(rotateArray([1,2,3,4,5], 2))
+
+// 24. have 1 unsorted array, like a shuffled element from positive integers, re-arrange it as 1st digit should be highest num and the 2nd should be the lowest integer and then the 3rd digit will be the second highest integer num and 4th should be second lowest integer number and so on
+
+function sortArray(arr) {
+  arr.sort((a,b) => a - b);
+
+  let result = [],
+  start = 0,
+  end = arr.length - 1;
+
+  for (let i = 0; i < arr.length; i += 1 ) {
+    if (i % 2 === 0) {
+      result.push(arr[end]);
+      end--;
+    } else {
+      result.push(arr[start]);
+      start++;
+    }
+  }
+  return result;
+
+}
+
+console.log(sortArray([6, 3, 7, 8, 12, 5, 22, 1]))
+
+output: [22,1,12,3,8,5,7,6]
 
 
 // https://onecompiler.com/javascript/42qygaerg

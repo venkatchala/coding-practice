@@ -20,7 +20,7 @@ const ChildComponent = ({ onData }) => {
     return (
       <div>
         <input
-          className="border border-gray-400"
+          className="border border-gray-200"
           type="text"
           onChange={handleChange}
         />
