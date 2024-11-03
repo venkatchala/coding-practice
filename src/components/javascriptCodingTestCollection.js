@@ -41,9 +41,9 @@ console.log(flattenArray([1,[2,[3,4],5],6]))
 function fibonacci(n) {
     let fib = [0,1];
     for(let i = 2; i <= n; i++ ) {
-        fib[i] = fib(n-1) + fib(n-2);
+        fib[i] = fib[i-1] + fib[i-2];
     }
-    return fib;
+    return fib[n];
 }
 
 console.log(fibonacci(10))
@@ -56,7 +56,7 @@ let x = 8,
 for (let i = 0; i < array.length; i += 1) {
   if (array[i] < x) {
     prevValue = array[i];
-  } else if (array[i] === x) {
+  } else if (array[i] === x) {  
      console.log(array[i]);
   }
 }
@@ -296,7 +296,8 @@ function isPalindrome(str) {
     return reversed;
   }
   const cleanedString = str.toLowerCase();
-  return reversedString === reversedStr(cleanedString);
+  const reversedString = reversedStr(cleanedString);
+  return reversedString === cleanedString;
 }
 console.log(isPalindrome('Level'))
 
@@ -324,7 +325,7 @@ function firstNonRepeatingCharacter(str) {
     count[char] ? count[char] += 1 : count[char] = 1;
   }
 
-  for (const char of str) {
+  for (const char in count) {
     if (count[char] === 1) {
       return char;
     }
@@ -404,6 +405,16 @@ function reverse(arr, start, end) {
   }
 }
 
+// Method 2
+
+function rotateArray(arr, k) {
+  for (let i = 0; i < k; i += 1) {
+    let popElement = arr.pop();
+    arr.unshift(popElement);
+  }
+  return arr;
+}
+
 console.log(rotateArray([1,2,3,4,5], 2))
 
 // 24. have 1 unsorted array, like a shuffled element from positive integers, re-arrange it as 1st digit should be highest num and the 2nd should be the lowest integer and then the 3rd digit will be the second highest integer num and 4th should be second lowest integer number and so on
@@ -431,6 +442,169 @@ function sortArray(arr) {
 console.log(sortArray([6, 3, 7, 8, 12, 5, 22, 1]))
 
 output: [22,1,12,3,8,5,7,6]
+
+
+// 25. Write a function which loops through an array and checks if n of the elements
+
+// of the array satisfy the condition function that is passed
+// Signature of the 'some' function
+
+// (array, n, conditionFunction) -> trueOrFalse
+// array - Input array
+// n - The function should check if n elements of the conditionFunction satisfy
+// Signature of the 'isEven' and 'isPrime' functions. They should take one integer as input and return a true or false value.
+
+// (int) -> trueOrFalse
+
+// Write the some function and isEven and isPrime functions
+
+function isEven(num) {
+  return num % 2 === 0;
+}
+
+function isPrime(num) {
+  if (num <= 1) {
+    return false;
+  }
+  for (let i = 2; i < num; i += 1) {
+    if (num % i === 0) {
+      return false
+    }
+  }
+  return true;
+}
+function some(array, n, conditionFunction) {
+  let count = 0;
+  for (let i = 0; i < array.length; i += 1) {
+    if (conditionFunction(array[i])) {
+      count++;
+    }
+    if (count >= n) {
+      return true;
+    }
+  }
+  return false;
+}
+
+console.log(some([2,4,6], 3, isEven)) // should print true
+console.log(some([2,3,4], 3, isEven)) // should print false
+console.log(some([2,3,11], 4, isPrime)) // should print false
+console.log(some([2,3,5,9], 3, isPrime)) // should print true
+
+
+// 26. Write a function whch returns a function that generates fibonacci numbers.
+// Don't use generators.
+
+
+// Example: (When you run the following code, don't change anything)
+
+function createFibonacciGenerator() {
+  let a = 0, b = 1;
+
+  return function() {
+    let current = a;
+    [a, b] = [b, a + b];
+    return current;
+  }
+}
+
+let fibonacciGenerator = createFibonacciGenerator()
+console.log(fibonacciGenerator()); // 0
+console.log(fibonacciGenerator()); // 1
+console.log(fibonacciGenerator()); // 1
+console.log(fibonacciGenerator()); // 2
+console.log(fibonacciGenerator()); // 3
+console.log(fibonacciGenerator()); // 5
+console.log(fibonacciGenerator()); // 8
+
+
+// 27. create Counter
+
+
+function counter() {
+  let count = 0;
+
+  return function() {
+    count += 1;
+    return count;
+  }
+}
+
+let count = createCounter();
+console.log(counter()); // 0
+console.log(counter()); // 1
+console.log(counter()); // 2
+console.log(counter()); // 3
+
+// 28. Range generator
+
+function createrangeGenerator (start, end) {
+  let current = start;
+  return function () {
+    if (current <= end) {
+      return current += 1;
+    }
+    return undefined;
+  }
+}
+
+
+let rangeGenerator = createrangeGenerator(3,6);
+
+console.log(rangeGenerator()) // 3
+console.log(rangeGenerator()) // 4
+console.log(rangeGenerator()) // 5
+console.log(rangeGenerator()) // 6
+console.log(rangeGenerator()) // undefined
+console.log(rangeGenerator()) // undefined
+
+// 29. Power Generator
+
+function createPowerGenerator(exponent) {
+  return function(base) {
+    return Math.pow(base, exponent);
+  }
+}
+
+let square = createPowerGenerator(2),
+cube = createPowerGenerator(3);
+
+console.log(square(3)) // 9
+console.log(cube(2)) // 8
+
+// 30. sum Calculator
+
+function sumCalculator() {
+  let total = 0;
+  return function(value) {
+    total += value;
+    return total;
+  }
+}
+
+let sum = sumCalculator();
+console.log(sum(5)) // 5
+console.log(sum(2)) // 7
+console.log(sum(-3)) // 4
+
+
+// 31. Multiplication table
+
+function createMultiplicationTable(n) {
+  return function(base) {
+    for (let i = 1; i <= n; i += 1) {
+      console.log(`${base} x ${i} = ${base * i}`);
+    }
+  }
+}
+
+let table = createMultiplicationTable(5);
+table(2)
+
+
+
+
+
 
 
 // https://onecompiler.com/javascript/42qygaerg
