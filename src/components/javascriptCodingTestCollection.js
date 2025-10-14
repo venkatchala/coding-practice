@@ -305,12 +305,12 @@ console.log(isPalindrome('Level'))
 
 function findLongestWord(str) {
   let words = str.split(' '),
-  longetsWord = '';
+  longestWord = '';
 
   words.forEach(word => {
-    if (word.length > longetsWord.length) longetsWord = word;
+    if (word.length > longestWord.length) longestWord = word;
   })
-  return longetsWord;
+  return longestWord;
 
 }
 
@@ -350,7 +350,7 @@ function areAnagrams(str1, str2) {
     count1[char] ? count1[char] += 1 : count1[char] = 1;
   }
   for (const char of str2) {
-    count2[char] ? count2[char] += 1 : count2[char]; 
+    count2[char] ? count2[char] += 1 : count2[char] = 1; 
   }
 
   for (const char in count1) {
@@ -366,7 +366,7 @@ console.log(areAnagrams('listen', 'silent'))
 // 21. Find missing numbers in the array
 
 function findMissingNumber(arr) {
-  const n = arr.legth + 1;
+  const n = arr.length + 1;
 
   const totalSum = (n * (n + 1)) / 2;
 
@@ -407,15 +407,15 @@ function reverse(arr, start, end) {
 
 // Method 2
 
-function rotateArray(arr, k) {
-  for (let i = 0; i < k; i += 1) {
+function rotateArrayByK(arr, k) {
+  for (let i = 0; i < k; i += 1) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
     let popElement = arr.pop();
     arr.unshift(popElement);
   }
   return arr;
 }
 
-console.log(rotateArray([1,2,3,4,5], 2))
+console.log(rotateArrayByK([1,2,3,4,5], 2))
 
 // 24. have 1 unsorted array, like a shuffled element from positive integers, re-arrange it as 1st digit should be highest num and the 2nd should be the lowest integer and then the 3rd digit will be the second highest integer num and 4th should be second lowest integer number and so on
 
@@ -600,6 +600,75 @@ function createMultiplicationTable(n) {
 
 let table = createMultiplicationTable(5);
 table(2)
+
+// 32. const array = ["2A","3B","4C"]; convert this array
+// output : [AA, BB, CCCC]
+
+const arr = ['2A', '3B', '4C'];
+const output = [];
+
+arr.forEach(val => {
+  let num = parseInt(val);
+  let char = val.replace(num, '');
+  return output.push(char.repeat(num));
+});
+
+console.log(output);
+
+//33. Compress String (Run Length Encoding)
+
+// Input: "aaabbc"
+// Output: "a3b2c1"
+
+const inputVal = 'aaabbc';
+let outputVal = '',
+countN = 1;
+
+for (let i = 0; i <= inputVal.length; i += 1) {
+  if (inputVal[i] === inputVal[i + 1]) {
+    countN++;
+  } else {
+    outputVal += inputVal[i] + countN;
+    countN = 1; 
+  }
+}
+
+console.log(countN);
+
+// 34. Expand Encoded String
+
+// Input: "a3b2c1"
+// Output: "aaabbc"
+
+const strVal = 'a3b2c1';
+let result = '';
+
+for (let i = 0; i < strVal.length; i += 2) {
+  const char = strVal[i];
+  const count = Number(strVal[i + 1]);
+  result += char.repeat(count);
+}
+
+console.log(result);
+
+// 36. Reverse Each Word in a Sentence
+
+// Input: "hello world"
+// Output: "olleh dlrow"
+
+const strV = 'Hello World';
+
+const resultV = strV.split(" ").map(word => {
+  let reversed = '';
+
+  for (let i = word.length -1; i >= 0; i--) {
+    reversed += word[i];
+  }
+return reversed;
+}).join(" ");
+
+console.log(resultV)
+
 
 
 

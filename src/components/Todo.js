@@ -31,7 +31,7 @@ const Todo = () => {
               <td>{item.title}</td>
               <td>{item.completed}</td>
               <td>
-                <button onClick={(e) => handleClick(e, index)}>Action</button>
+                <button onClick={(e) => handleClick(e, index)}>Delete</button>
               </td>
             </tr>
           ))}

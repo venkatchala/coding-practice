@@ -20,6 +20,10 @@ import CounterRedux from "./components/CounterRedux";
 import HocDashboard from "./components/HocDashboard";
 import Crud from "./components/Crud";
 import UserList from "./components/UserList";
+import ButtonBox from "./components/ButtonBox";
+import CrudLocalStorage from "./components/CrudLocalStorage";
+import Pagination from "./components/Pagination";
+import UsersTable from "./components/UsersTable";
 
 const appRouter = createBrowserRouter([
   {
@@ -105,6 +109,22 @@ const appRouter = createBrowserRouter([
       {
         path: "/userlist",
         element: <UserList />,
+      },
+      {
+        path: "/buttonBox",
+        element: <ButtonBox />,
+      },
+      {
+        path: "/crudLocalStorage",
+        element: <CrudLocalStorage />,
+      },
+      {
+        path: "/pagination",
+        element: <Pagination />,
+      },
+       {
+        path: "/usersTable",
+        element: <UsersTable />,
       },
     ],
   },

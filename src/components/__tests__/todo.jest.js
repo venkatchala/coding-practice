@@ -1,4 +1,4 @@
-import { render, waitFor } from "@testing-library/react";
+import { render, waitFor, screen } from "@testing-library/react";
 import Todo from "../Todo";
 
 global.fetch = jest.fn(() =>

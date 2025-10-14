@@ -61,6 +61,18 @@ const Head = () => {
       <li className="m-4 p-2 border bg-gray-400">
         <Link to="/userlist">UserList</Link>
       </li>
+      <li className="m-4 p-2 border bg-gray-400">
+        <Link to="/buttonBox">ButtonBox</Link>
+      </li>
+      <li className="m-4 p-2 border bg-gray-400">
+        <Link to="/crudLocalStorage">CrudLocalStorage</Link>
+      </li>
+       <li className="m-4 p-2 border bg-gray-400">
+        <Link to="/pagination">Pagination</Link>
+      </li>
+       <li className="m-4 p-2 border bg-gray-400">
+        <Link to="/usersTable">UsersTable</Link>
+      </li>
     </ul>
   );
 }
