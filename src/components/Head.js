@@ -70,8 +70,14 @@ const Head = () => {
        <li className="m-4 p-2 border bg-gray-400">
         <Link to="/pagination">Pagination</Link>
       </li>
-       <li className="m-4 p-2 border bg-gray-400">
+      <li className="m-4 p-2 border bg-gray-400">
         <Link to="/usersTable">UsersTable</Link>
+      </li>
+      <li className="m-4 p-2 border bg-gray-400">
+        <Link to="/findAndReplace">FindAndReplace</Link>
+      </li>
+      <li className="m-4 p-2 border bg-gray-400">
+        <Link to="/contextTheme">ContextTheme</Link>
       </li>
     </ul>
   );

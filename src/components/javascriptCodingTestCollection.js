@@ -190,8 +190,8 @@ for (let num = startNum; num <= endNum; num += 1) {
 //13. Sort an array without using sort method
 const arraySort = [35, 4, 76, 1, 8787, 45];
 
-for (let i = 0; i < array.length - 1; i += 1) {
-  for (let j = 0; j < array.length - 1; j += 1) {
+for (let i = 0; i < arraySort.length - 1; i += 1) {
+  for (let j = 0; j < arraySort.length - 1; j += 1) {
     if (arraySort[j] > arraySort[j + 1]) {
       let temp = arraySort[j];
       arraySort[j] = arraySort[j + 1];
@@ -273,7 +273,7 @@ console.log(charactersOccurence('Google'))
 
 const originalString = 'Hello';
 
-const reversedString = reverseStirng(originalString);
+const reversedString = reverseString(originalString);
 console.log(reversedString);
 
 function reverseStirng(str) {
@@ -462,7 +462,7 @@ function isEven(num) {
   return num % 2 === 0;
 }
 
-function isPrime(num) {
+function isPrimeN(num) {
   if (num <= 1) {
     return false;
   }
@@ -488,8 +488,8 @@ function some(array, n, conditionFunction) {
 
 console.log(some([2,4,6], 3, isEven)) // should print true
 console.log(some([2,3,4], 3, isEven)) // should print false
-console.log(some([2,3,11], 4, isPrime)) // should print false
-console.log(some([2,3,5,9], 3, isPrime)) // should print true
+console.log(some([2,3,11], 4, isPrimeN)) // should print false
+console.log(some([2,3,5,9], 3, isPrimeN)) // should print true
 
 
 // 26. Write a function whch returns a function that generates fibonacci numbers.
@@ -624,7 +624,7 @@ const inputVal = 'aaabbc';
 let outputVal = '',
 countN = 1;
 
-for (let i = 0; i <= inputVal.length; i += 1) {
+for (let i = 0; i <= inputVal.length - 1; i += 1) {
   if (inputVal[i] === inputVal[i + 1]) {
     countN++;
   } else {
@@ -633,7 +633,7 @@ for (let i = 0; i <= inputVal.length; i += 1) {
   }
 }
 
-console.log(countN);
+console.log(outputVal);
 
 // 34. Expand Encoded String
 
@@ -651,7 +651,7 @@ for (let i = 0; i < strVal.length; i += 2) {
 
 console.log(result);
 
-// 36. Reverse Each Word in a Sentence
+// 35. Reverse Each Word in a Sentence
 
 // Input: "hello world"
 // Output: "olleh dlrow"
@@ -668,6 +668,158 @@ return reversed;
 }).join(" ");
 
 console.log(resultV)
+
+// 36. Find average of given array
+
+const arrayA = [{Name : 'semester1', total: 8.7}, {Name: 'semester2', total: 7.5}];
+
+const average = arrayA.reduce((sum, item) => sum + item.total, 0)/ arrayA.length;
+
+console.log(average);
+
+// 37. Count Vowels
+
+function countVowels(str) {
+  const vowels = 'áeiouAEIOU';
+  let count = 0;
+
+  for (let i = 0; i <= str.length - 1; i += 1) {
+    if (vowels.includes(str[i])) {
+      count += 1;
+    }
+  }
+  return count;
+}
+
+console.log(countVowels('hello world'));
+
+// Create a typeahead search in react similar to google 
+
+import "./styles.css";
+import React, { useState, useEffect } from "react";
+
+function App() {
+  const [text, setText] = useState([]);
+  const [typedText, setTypedText] = useState("");
+  useEffect(() => {
+    fetchApi();
+  }, [typedText]);
+
+  const fetchApi = async () => {
+    const response = await fetch(`https://api.datamuse.com/sug?s=${typedText}`);
+    const result = await response.json();
+    setText(result);
+  };
+
+  const handleChange = (e) => {
+    setTypedText(e.target.value);
+    setText(text.filter((char) => typedText.includes(char)));
+  };
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="search"
+        onChange={(e) => handleChange(e)}
+      />
+      <ul>
+        {text.map((item) => (
+          <li>{item.word}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
+
+
+//Add Instruction List
+
+const InstructionBoard = () => {
+  const [instruction, setInstruction] = useState("");
+  const [instructionList, setInstructionList] = useState([]);
+
+  const handleClickAdd = () => {
+    setInstructionList([...instructionList, instruction]);
+  };
+
+  const handkeClickUp = (index) => {
+    if (index <= 0) return;
+    const newList = [...instructionList];
+    [newList[index], newList[index - 1]] = [newList[index - 1], newList[index]];
+    setInstructionList(newList);
+  };
+
+  const handleClickDown = (index) => {
+    if (index === instructionList.length - 1) return;
+    const newList = [...instructionList];
+    [newList[index], newList[index + 1]] = [newList[index + 1], newList[index]];
+    setInstructionList(newList);
+  };
+  return (
+    <div>
+      <h2>Instruction Board</h2>
+      <input
+        type="text"
+        value={instruction}
+        onChange={(e) => setInstruction(e.target.value)}
+      />
+      <button onClick={handleClickAdd}>Add Instruction</button>
+      <ul>
+        {instructionList.map((list, index) => (
+          <li key={index}>
+            <span>{index + 1} </span>
+            <span>{list}</span>
+            <button disabled={index === 0} onClick={() => handkeClickUp(index)}>
+              MoveUp
+            </button>
+            <button
+              onClick={() => handleClickDown(index)}
+              disabled={index === instructionList.length - 1}
+            >
+              MoveDown
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default InstructionBoard;
+
+// HOC
+
+const HocWithAuth = (WrappedComponent) => {
+  return function EnhancedComponent(props) {
+    let isAuthenticated = false;
+    const user = { name: "venkat", role: "Admin" };
+
+    if (!isAuthenticated) {
+      return (
+        <div>
+          <span>Please Login</span>
+        </div>
+      );
+    }
+    return <WrappedComponent {...props} user={user} />;
+  };
+};
+
+const Dashboard = ({ user }) => {
+  return (
+    <div>
+      <p>Welcome user, {user.name}</p>
+    </div>
+  );
+};
+
+export default HocWithAuth(Dashboard);
+
+
+
+
 
 
 

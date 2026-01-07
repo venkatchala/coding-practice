@@ -24,6 +24,8 @@ import ButtonBox from "./components/ButtonBox";
 import CrudLocalStorage from "./components/CrudLocalStorage";
 import Pagination from "./components/Pagination";
 import UsersTable from "./components/UsersTable";
+import FindAndReplace from "./components/FindAndReplace";
+import ContextTheme from "./components/ContextTheme";
 
 const appRouter = createBrowserRouter([
   {
@@ -122,9 +124,17 @@ const appRouter = createBrowserRouter([
         path: "/pagination",
         element: <Pagination />,
       },
-       {
+      {
         path: "/usersTable",
         element: <UsersTable />,
+      },
+      {
+        path: "/findAndReplace",
+        element: <FindAndReplace />,
+      },
+      {
+        path: "/contextTheme",
+        element: <ContextTheme />,
       },
     ],
   },

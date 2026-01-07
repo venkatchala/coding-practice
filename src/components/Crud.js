@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { unstable_batchedUpdates } from "react-dom";
 
 const Crud = () => {
     const [students, setStudents] = useState([]);
