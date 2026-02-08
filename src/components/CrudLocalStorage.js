@@ -19,7 +19,7 @@ const CrudLocalStorage = () => {
             setEditIndex(null);
         } else {
             setData([...data, input]);
-                   }
+        }
         setInput("");
     }
 

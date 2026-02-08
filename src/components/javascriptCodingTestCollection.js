@@ -693,6 +693,34 @@ function countVowels(str) {
 
 console.log(countVowels('hello world'));
 
+// 38. Find totalPrice when category is Electroncis and status not returned
+
+const orders = [
+  { id: 1, category: 'Electronics', price: 500,  status: 'shipped' },
+  { id: 2, category: 'Clothing',    price: 50,   status: 'shipped' },
+  { id: 3, category: 'Electronics', price: 1200, status: 'returned' },
+  { id: 4, category: 'Electronics', price: 150,  status: 'shipped' },
+  { id: 5, category: 'Books',       price: 20,   status: 'shipped' }
+];
+
+const totalPrice = orders.reduce((acc, item) => {
+  if (item.category === 'Electronics' && item.status !== 'returned') {
+    return acc + item.price;
+  }
+  return acc;
+}, 0);
+
+console.log(totalPrice); 
+
+//39. Capitalize first letter of each word
+
+const str = "My name is venkatachalam";
+
+const result1 = str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+console.log(result1);
+
+//output : My Name Is Venkatachalam
+
 // Create a typeahead search in react similar to google 
 
 import "./styles.css";
@@ -816,6 +844,29 @@ const Dashboard = ({ user }) => {
 };
 
 export default HocWithAuth(Dashboard);
+
+const data = [
+{
+	name:'Jems',
+	car:'Maruti',
+	value:'400000'
+},
+{
+	name:'Mark',
+	car:'Maruti',
+	value:'490000'
+},
+{
+	name:'Jems',
+	car:'tata',
+	value:'590000'
+},
+{
+	name:'Preet',
+	car:'hundai',
+	value:'790000'
+}
+]
 
 
 
