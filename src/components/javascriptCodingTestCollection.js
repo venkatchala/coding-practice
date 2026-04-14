@@ -238,6 +238,24 @@ function findDuplicates(arr) {
 
 console.log(findDuplicates([1,2,3,4,2,5,1]));
 
+// Example 5
+
+const arrayWithObjectDuplicates = [
+  { id: 1, name: "Joe" },
+  { id: 2, name: "Vani" },
+  { id: 1, name: "Joe" },
+  { id: 3, name: "Alex" }
+];
+
+let withoutDuplicates = [];
+arrayWithObjectDuplicates.forEach(val => {
+    if (!withoutDuplicates[val.id]) {
+        withoutDuplicates.push(val)
+    }
+})
+
+console.log(withoutDuplicates)
+
 //15. Find Number of occurence in word
 // Method 1
 
@@ -279,7 +297,7 @@ console.log(reversedString);
 function reverseStirng(str) {
   let reversed = '';
 
-  for (let i = str.length - 1; i >=0; i--) {
+  for (let i = str.length - 1; i >= 0; i--) {
     reversed += str[i];
   }
   return reversed;
@@ -521,7 +539,7 @@ console.log(fibonacciGenerator()); // 8
 // 27. create Counter
 
 
-function counter() {
+function createCounter() {
   let count = 0;
 
   return function() {
@@ -530,7 +548,7 @@ function counter() {
   }
 }
 
-let count = createCounter();
+let counter = createCounter();
 console.log(counter()); // 0
 console.log(counter()); // 1
 console.log(counter()); // 2
@@ -693,6 +711,24 @@ function countVowels(str) {
 
 console.log(countVowels('hello world'));
 
+// Count vowels (if character repeated twice count only once)
+
+const strVo = 'Google';
+let words = strVo.split(' ');
+let vowels = 'aeiouAEIOU';
+let count = 0;
+
+words.forEach(word => {
+    word = word.split('');
+    word = [...new Set(word)]
+    word.forEach(char => {
+        if (vowels.includes(char)) {
+            count++;
+        }
+    })
+})
+console.log(count);
+
 // 38. Find totalPrice when category is Electroncis and status not returned
 
 const orders = [
@@ -720,6 +756,90 @@ const result1 = str.split(' ').map(word => word.charAt(0).toUpperCase() + word.s
 console.log(result1);
 
 //output : My Name Is Venkatachalam
+
+// 40. Move all zeros to front
+
+const arr1 = [1,0,6,0,3];
+let zeros = [],
+nonZeros = [];
+
+zeros = arr1.filter(num => num === 0);
+nonZeros = arr1.filter(num => num !== 0);
+
+const arrZeros = [...zeros,...nonZeros];
+console.log(arrZeros);
+
+//output : [0,0,1,6,3]
+
+// 41. Find SecondLargest number in the given array
+
+const arrL = [1, 14, 2, 16, 10, 20, 12, 25];
+
+const unique = [...new Set(arrL)];
+unique.sort((a,b) => a - b);
+let secondLargest = unique[0],
+largest = unique[unique.length - 1];
+unique.forEach((num) => {
+  if (num > secondLargest && num !== largest) {
+    secondLargest = num;
+  }
+});
+
+console.log(secondLargest);
+
+// Another method
+const uniqueA = [...new Set(arrL)];
+uniqueA.sort((a,b) => a - b);
+let secondLargestNum = uniqueA(uniqueA.length - 2);
+console.log(secondLargestNum);
+
+// 42. Two sum logic in array
+
+let arrData = [0,4,6,5,2,7,8,9,10,5,3];
+let target = 10;
+
+let map = new Map();
+
+for (let num of arrData) {
+  let complement = target - num;
+
+  if (map.has(complement)) {
+    console.log([complement, num]);
+  }
+
+  map.set(num, true);
+}
+
+// Another Method
+
+let arrD = [0,4,6,5,2,7,8,9,10,5,3];
+let targetV = 10;
+
+for (let i = 0; i <= arrD.length - 1; i += 1) {
+    for (let j = i + 1; j <= arr.length - 1; j += 1) {
+        if (arrD[i] + arrD[j] === targetV) {
+            console.log([arrD[i],arrD[j]])
+        }
+    }
+}
+
+// 43. Grouping Array
+
+const array3 = [
+  { id: 1, category: 'Food', amount: 100 },
+  { id: 2, category: 'Travel', amount: 500 },
+  { id: 3, category: 'Food', amount: 300 }
+];
+
+const result3 = array.reduce((acc,item) => {
+    if (!acc[item.category]) {
+        acc[item.category] = 0;
+    }
+    acc[item.category] += item.amount;
+    return acc;
+},{});
+
+console.log(result3)
 
 // Create a typeahead search in react similar to google 
 
@@ -869,12 +989,239 @@ const data = [
 ]
 
 
+//Filter table 
+
+import React, { useState, useEffect } from 'react';
+import './style.css';
+
+const FilterTable = () => {
+  const [query, setQuery] = useState('');
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    if (query.length > 0) {
+      const filteredValue = products.filter((product) => {
+        return product.brand?.toLowerCase().includes(query.toLowerCase())
+      });
+      setProducts(filteredValue);
+      return;
+    }
+    fetchApi();
+  },[query]);
+
+  const fetchApi = async () => {
+    try {
+      const res = await fetch(`https://dummyjson.com/products`);
+      const data = await res.json();
+      setProducts(data.products);
+    } catch (error) {
+      console.error('Error', error);
+    }
+  }
+  return (
+    <>
+      <h2>Search</h2>
+      <input type='text' placeholder='search' value={query} onChange={(e) => setQuery(e.target.value)} />
+      <h3>Table List</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>Title</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            products.map((product) => (
+              <tr key={product.id}>
+                <td>{product.brand}</td>
+                <td>{product.title}</td>
+              </tr>
+            ))
+          }
+
+        </tbody>
+      </table>
+    </>
+  )
+}
+export default FilterTable;
+
+import React, { useState, useEffect, useMemo } from 'react';
+import './style.css';
 
 
+const UsersList = () => {
+  const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState('');
 
+  const filterUsers = useMemo(() => {
+    return users.filter((user) => 
+      user.name.toLowerCase().includes(search.toLowerCase())
+    );
+  },[search, users])
 
+  useEffect(() => {
+    fetchApi();
+  },[]);
 
+  const fetchApi = async () => {
+    try {
+      const res = await fetch(`https://jsonplaceholder.typicode.com/users`);
+      const result = await res.json();
+      setUsers(result);
+    } catch (error) {
+      console.error('Error', error);
+    }
+  }
+  return (
+    <>
+      <h2>Users</h2>
+      <input type='text' placeholder='search' onChange={(e) => setSearch(e.target.value)}/>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>EmailId</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            filterUsers.map((user) => (
+              <tr key={user.id}>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </>
+  )
+}
 
+export default UsersList;
+
+// Pure Button Component
+const Button = React.memo(({ onClick, children }) => {
+  console.log("Button rendered");
+  return <button onClick={onClick}>{children}</button>;
+});
+// Parent Counter Component
+function Counter() {
+  const [count, setCount] = useState(0);
+  const handleIncrement = useCallback(() => {
+    setCount((prev) => prev + 1);
+  }, []);
+  return (
+    <div>
+      <h2>Count: {count}</h2>
+      <Button onClick={handleIncrement}>Increment</Button>
+    </div>
+  );
+}
+export default Counter;
+
+import React, { useState } from 'react';
+
+const PriceCalculator = () => {
+  const [initialCart, setInitialCart] = useState([
+      { id: 1, name: 'Item A', price: 100, qty: 1 },
+      { id: 2, name: 'Item B', price: 200, qty: 2 },
+  ]);
+
+  const handleIncrease = (itemId) => {
+    setInitialCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === itemId ? { ...item, qty: item.qty + 1 } : item
+      )
+    );
+  };
+
+  const handleDecrease = (itemId) => {
+    setInitialCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === itemId && item.qty > 1
+          ? { ...item, qty: item.qty - 1 }
+          : item
+      )
+    );
+  };
+
+  const handleRemove = (itemId) => {
+    setInitialCart((prevCart) => prevCart.filter((item) => item.id !== itemId));
+  };
+
+  return (
+    <div>
+      {initialCart.map((item) => (
+        <p key={item.id}>
+          <span>
+            {item.name} - ₹{item.price * item.qty}
+          </span>
+
+          <button onClick={() => handleIncrease(item.id)}>Increment</button>
+
+          <button onClick={() => handleDecrease(item.id)}>Decrement</button>
+
+          <button onClick={() => handleRemove(item.id)}>Remove</button>
+        </p>
+      ))}
+    </div>
+  );
+};
+
+export default PriceCalculator;
+
+// Fetch Api with Loading+ error
+
+import React, { useState, useEffect } from 'react';
+import './style.css';
+
+const UserDetail= () => {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchApi();
+  }, []);
+
+  const fetchApi = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await fetch(
+        `https://jsonplaceholder.typicode.com/users`
+      );
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      const data = await response.json();
+      setUsers(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  return (
+    <>
+      <h2>Users</h2>
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {!loading && !error && (
+        <ul>
+          {users.map((user) => (
+            <li key={user.id}>{user.name}</li>
+          ))}
+        </ul>
+      )}
+    </>
+  );
+};
+
+export default UserDetail;
 
 
 
