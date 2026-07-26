@@ -89,7 +89,7 @@ function findMaxMin(arr) {
   arr.forEach((num) => {
     if (num > max) {
       max = num;
-    } else {
+    } else if (num < min) {
       min = num;
     }
   });
@@ -190,8 +190,8 @@ for (let num = startNum; num <= endNum; num += 1) {
 //13. Sort an array without using sort method
 const arraySort = [35, 4, 76, 1, 8787, 45];
 
-for (let i = 0; i < arraySort.length - 1; i += 1) {
-  for (let j = 0; j < arraySort.length - 1; j += 1) {
+for (let i = 0; i <= arraySort.length - 1; i += 1) {
+  for (let j = 0; j <= arraySort.length - 1; j += 1) {
     if (arraySort[j] > arraySort[j + 1]) {
       let temp = arraySort[j];
       arraySort[j] = arraySort[j + 1];
@@ -816,7 +816,7 @@ let arrD = [0,4,6,5,2,7,8,9,10,5,3];
 let targetV = 10;
 
 for (let i = 0; i <= arrD.length - 1; i += 1) {
-    for (let j = i + 1; j <= arr.length - 1; j += 1) {
+    for (let j = i + 1; j <= arrD.length - 1; j += 1) {
         if (arrD[i] + arrD[j] === targetV) {
             console.log([arrD[i],arrD[j]])
         }
@@ -840,6 +840,67 @@ const result3 = array.reduce((acc,item) => {
 },{});
 
 console.log(result3)
+
+// another method
+
+const array4 = [
+  { id: 1, category: 'Food', amount: 100 },
+  { id: 2, category: 'Travel', amount: 500 },
+  { id: 3, category: 'Food', amount: 300 }
+];
+
+const result4 = {};
+
+array.forEach(item => {
+    result[item.category] ? result[item.category] += item.amount : result[item.category] = item.amount;
+})
+
+console.log(result)
+
+// 44. Filter by country and remove duplicates city
+
+function filterByCountry(arr, country) {
+    const result = arr.filter((item) => item.country === country).map((val) => ({
+        ...val, city: val.city.filter((i,index,self) => self.indexOf(i) === index)
+    }))
+    return result
+}
+
+
+const countryData = [
+  {
+    country: 'India',
+    city: ['Delhi', 'Mumbai']
+  },
+  {
+    country: 'UK',
+    city: ['London', 'Manchester', 'Manchester']
+  },
+  {
+    country: 'USA',
+    city: ['Miami', 'New York', 'Miami']
+  }
+];
+const selectedCountry = 'USA';
+console.log(filterByCountry(countryData,selectedCountry))
+
+
+// 45. Calculate UpperCase and LowerCase in the array
+
+const arr6 = ['HELLO', 'World', 'WElcome'];
+
+const count1 = arr6.reduce((acc,word) => {
+  for (const char of word) {
+    if (char >= 'A' && char <= 'Z') {
+      acc.upperCase++;
+    } else if (char >= 'a' && char <= 'z') {
+      acc.lowerCase++
+    }
+  }
+  return acc;
+},{upperCase: 0, lowerCase:0})
+
+console.log(count1);
 
 // Create a typeahead search in react similar to google 
 

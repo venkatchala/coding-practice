@@ -15,3 +15,11 @@ it('Should contain text in the component', () => {
     const countBtn = screen.getByRole('button');
     fireEvent.click(countBtn);
 });
+
+it('should render count on each click', () => {
+    render(<Counter num={1} />);
+    const button = screen.getByRole('button');
+    fireEvent.click(button);
+    fireEvent.click(button);
+    expect(screen.getAllByText('2')).toBeInTheDocument();
+})
